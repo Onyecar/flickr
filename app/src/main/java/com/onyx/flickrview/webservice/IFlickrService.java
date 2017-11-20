@@ -2,9 +2,6 @@ package com.onyx.flickrview.webservice;
 
 import com.onyx.flickrview.data.FlickrApiResponse;
 
-/**
- * Created by Morph-Deji on 19-Nov-17.
- */
 
 public interface IFlickrService {
     interface FlickrServiceCallback<T> {
