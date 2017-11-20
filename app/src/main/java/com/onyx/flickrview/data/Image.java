@@ -4,12 +4,8 @@ import android.support.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 import com.google.common.base.Objects;
 
-import org.json.JSONObject;
 
 
-/**
- * Created by onyekaanene on 17/11/2017.
- */
 
 public class Image {
     @Nullable
@@ -29,15 +25,15 @@ public class Image {
         mMediaUrl = mediaUrl;
     }
 
-    @Nullable
-    public String getmTitle() {
-        return mTitle;
-    }
-
-    @Nullable
-    public String getmDescription() {
-        return mDescription;
-    }
+//    @Nullable
+//    public String getmTitle() {
+//        return mTitle;
+//    }
+//
+//    @Nullable
+//    public String getmDescription() {
+//        return mDescription;
+//    }
 
     @Nullable
     public ImageUrl getmMediaUrl() {
@@ -45,10 +41,6 @@ public class Image {
     }
 
 
-    public boolean isEmpty() {
-        return (mTitle == null || "".equals(mTitle)) &&
-                (mDescription == null || "".equals(mDescription));
-    }
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
@@ -69,12 +61,12 @@ public class Image {
                 "\"title\": \""+mTitle+"\"\n"+
                 "\"description\": \""+mDescription+"\"\n"+
                 "\"mediaUrl\": \""+mMediaUrl+"\"\n"+
-                "\"imageUrl\": \""+mMediaUrl.getmImageUrl()+"\"\n"+
+                "\"imageUrl\": \""+ (mMediaUrl != null ? mMediaUrl.getmImageUrl() : null) +"\"\n"+
                 "}";
     }
     public static class ImageUrl{
         @SerializedName("m")
-        private String mImageUrl;
+        private final String mImageUrl;
 
         public String getmImageUrl() {
             return mImageUrl;

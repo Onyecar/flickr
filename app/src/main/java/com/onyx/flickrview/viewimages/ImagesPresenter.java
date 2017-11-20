@@ -1,8 +1,6 @@
 package com.onyx.flickrview.viewimages;
 
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class ImagesPresenter implements ImagesContract.ActionsListener{
 
     private final ImagesContract.View mImagesView;
 
-    private IFlickrService mWebService;
+    private final IFlickrService mWebService;
 
     public ImagesPresenter(@NonNull ImagesContract.View imagesView, IFlickrService service) {
         mImagesView = checkNotNull(imagesView, "imagesView cannot be null!");
@@ -110,7 +107,7 @@ public class ImagesPresenter implements ImagesContract.ActionsListener{
     public Image[] formatJson (String jsonString) throws JSONException {
 
         int lastIndex = jsonString.length()-1;
-        StringBuffer formattedJsonString = new StringBuffer(jsonString);
+        StringBuilder formattedJsonString = new StringBuilder(jsonString);
 
         formattedJsonString.replace(lastIndex,lastIndex,"");
         formattedJsonString.replace(0,15,"");

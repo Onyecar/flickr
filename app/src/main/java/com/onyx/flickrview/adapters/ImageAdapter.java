@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
@@ -21,7 +19,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     private final static String TAG = ImageAdapter.class.getSimpleName();
     private Image[] mImages;
-    Context mContext;
+    private final Context mContext;
 
     public ImageAdapter(Context context) {
         mContext = context;
@@ -58,10 +56,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public int getItemCount() {
         if (null == mImages) return 0;
         return mImages.length;
-    }
-
-    public Image getItem(int position) {
-        return mImages[position];
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

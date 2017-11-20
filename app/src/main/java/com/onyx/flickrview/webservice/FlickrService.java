@@ -51,10 +51,10 @@ public class FlickrService implements IFlickrService {
     }
 
 
-    public FlickrApiResponse parseResponse(String feedData) {
+    private FlickrApiResponse parseResponse(String feedData) {
 
         int lastIndex = feedData.length() - 1;
-        StringBuffer formattedJsonString = new StringBuffer(feedData);
+        StringBuilder formattedJsonString = new StringBuilder(feedData);
 
         formattedJsonString.replace(lastIndex, lastIndex, "");
         formattedJsonString.replace(0, 15, "");
@@ -70,6 +70,7 @@ public class FlickrService implements IFlickrService {
         }
         JSONArray imagesArray;
         try {
+            assert json != null;
             imagesArray = json.getJSONArray("items");
         } catch (JSONException e) {
             e.printStackTrace();

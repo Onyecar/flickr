@@ -13,7 +13,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -23,18 +22,18 @@ import static org.mockito.Mockito.verify;
 @PrepareForTest(ImagesPresenter.class)
 public class ImagesPresenterTest {
 
-    private Image[] IMAGES = new Image[2];
-    private Image.ImageUrl[] IMAGE_URLS = new Image.ImageUrl[2];
-    private FlickrApiResponse response = new FlickrApiResponse();
+    private final Image[] IMAGES = new Image[2];
+    private final Image.ImageUrl[] IMAGE_URLS = new Image.ImageUrl[2];
+    private final FlickrApiResponse response = new FlickrApiResponse();
 
     @Mock
-    private ImagesContract.View mImagesView;
+    private final ImagesContract.View mImagesView;
 
     @Mock
     private ImagesPresenter mImagesPresenter;
 
     @Mock
-    private IFlickrService mWebService;
+    private final IFlickrService mWebService;
 
 
     /**
@@ -42,7 +41,13 @@ public class ImagesPresenterTest {
      * perform further actions or assertions on them.
      */
     @Captor
-    private ArgumentCaptor<IFlickrService.FlickrServiceCallback<FlickrApiResponse>> mApiResponseCallbackCaptor;
+    private final ArgumentCaptor<IFlickrService.FlickrServiceCallback<FlickrApiResponse>> mApiResponseCallbackCaptor;
+
+    public ImagesPresenterTest() {
+        mImagesView = null;
+        mWebService = null;
+        mApiResponseCallbackCaptor=null;
+    }
 
     @Before
     public void setupImagesPresenter() {
@@ -71,6 +76,7 @@ public class ImagesPresenterTest {
         verify(mImagesView).setProgressIndicator(true);
 
         // Callback is captured and invoked with fake api response
+        assert mApiResponseCallbackCaptor != null;
         verify(mWebService).getImages(mApiResponseCallbackCaptor.capture());
         mApiResponseCallbackCaptor.getValue().onLoaded(response);
 
@@ -87,6 +93,7 @@ public class ImagesPresenterTest {
         verify(mImagesView).setProgressIndicator(true);
 
         // Callback is captured and invoked with fake api response
+        assert mApiResponseCallbackCaptor != null;
         verify(mWebService).getImages(mApiResponseCallbackCaptor.capture());
         mApiResponseCallbackCaptor.getValue().onLoaded(null);
 

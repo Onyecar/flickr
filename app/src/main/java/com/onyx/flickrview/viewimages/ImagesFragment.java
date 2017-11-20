@@ -19,7 +19,7 @@ import com.onyx.flickrview.webservice.FlickrService;
 
 public class ImagesFragment extends Fragment implements ImagesContract.View{
 
-    private OnFragmentInteractionListener mListener;
+//    private OnFragmentInteractionListener mListener;
     private ImageAdapter mListAdapter;
     private com.onyx.flickrview.viewimages.ImagesContract.ActionsListener mActionsListener;
 
@@ -47,7 +47,6 @@ public class ImagesFragment extends Fragment implements ImagesContract.View{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_images, container, false);
         View root = inflater.inflate(R.layout.fragment_images, container, false);
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.images_list);
         recyclerView.setAdapter(mListAdapter);
@@ -74,12 +73,6 @@ public class ImagesFragment extends Fragment implements ImagesContract.View{
         return root;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
 //    @Override
 //    public void onAttach(Context context) {
@@ -92,11 +85,11 @@ public class ImagesFragment extends Fragment implements ImagesContract.View{
 //        }
 //    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//    }
 
     @Override
     public void setProgressIndicator(final boolean active) {
@@ -113,11 +106,6 @@ public class ImagesFragment extends Fragment implements ImagesContract.View{
                 srl.setRefreshing(active);
             }
         });
-    }
-
-    @Override
-    public void getImages(Image[] images) {
-        mListAdapter.replaceData(images);
     }
 
     @Override
